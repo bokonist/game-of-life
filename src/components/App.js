@@ -109,12 +109,14 @@ function App() {
   };
   const loadOrganism = (organismBody) => {
     //reset();
-    let gridCopy = deepClone(grid);
-    //console.log(gridCopy);
+
+    let gridCopy = deepClone(emptyGrid);
+    //below logic is to load the organism body in the middle of the grid
     let freeHorizontalSpace = ROWS - organismBody[0].length;
     let freeVerticalSpace = COLS - organismBody.length;
     let gridColumnPointer = Math.floor(freeHorizontalSpace / 2),
       gridRowPointer = Math.floor(freeVerticalSpace / 2);
+
     for (let i = 0; i < organismBody.length; i++) {
       for (let j = 0; j < organismBody[0].length; j++) {
         gridCopy[gridRowPointer][gridColumnPointer] = organismBody[i][j];
@@ -124,6 +126,7 @@ function App() {
       gridRowPointer++;
     }
     setGrid(gridCopy);
+    setRunning(true);
   };
   return (
     <div className="App">
@@ -184,7 +187,7 @@ function App() {
               }
             }}
           >
-            {running ? "STOP SIMULATION" : "START SIMULATION"}
+            {running ? "PAUSE SIMULATION" : "START SIMULATION"}
           </button>
           <button
             className="option-button"
