@@ -1,5 +1,6 @@
 import { useCallback, useState, useRef } from "react";
 import "../styles/App.css";
+import Preview from "./Preview";
 
 function App() {
   const ROWS = 50,
@@ -171,6 +172,7 @@ function App() {
           >
             {`RANDOM POPULATION`}
           </button>
+          <Preview></Preview>
         </div>
       </div>
     </div>
