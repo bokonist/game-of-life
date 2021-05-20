@@ -1,6 +1,7 @@
 .preview-container {
   display: grid;
-  grid-template-rows: 5fr 1fr;
+  grid-template-rows: 5fr 1fr 1fr;
+  justify-items: center;
 }
 .preview-grid-container {
   display: grid;
@@ -38,4 +39,38 @@
 
 .preview-grid-cell {
   border: 2px solid #000000;
+}
+
+.load-organism-button {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  max-width: 7rem;
+  max-height: 4rem;
+  font-size: 1rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  background-color: rgb(26, 26, 26);
+  color: white;
+  border: 2px dashed white;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0rem;
+}
+
+.load-organism-button:hover {
+  background-color: #9daf00;
+  color: black;
+  transition: 500ms;
+}
+.info-entry {
+  margin-bottom: 0.2rem;
+}
+.info-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: rgb(211, 211, 211);
+}
+.info-content {
+  font-size: 1rem;
+
+  color: rgb(255, 255, 255);
 }

@@ -37,7 +37,7 @@
 }
 .main-body-container {
   display: grid;
-  grid-template-columns: 1fr 2fr 3fr;
+  grid-template-columns: 1fr 2fr 2fr;
 }
 .instructions {
   color: white;
@@ -69,6 +69,8 @@
   justify-content: center;
   align-items: center;
   border: 3px solid rgb(139, 139, 139);
+  max-height: 51rem;
+  max-width: 51rem;
 }
 .grid-cell {
   height: 1rem;
@@ -89,7 +91,7 @@
 }
 .option-button {
   cursor: pointer;
-  padding: 2rem 3rem;
+  padding: 1rem 3rem;
   width: 25rem;
   font-size: 1.5rem;
   font-family: "Montserrat";
