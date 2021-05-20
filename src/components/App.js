@@ -147,6 +147,7 @@ function App() {
         </div>
         <div className="options">
           <button
+            className="option-button"
             onClick={() => {
               setRunning(!running);
               if (!running) {
@@ -158,6 +159,7 @@ function App() {
             {running ? "STOP SIMULATION" : "START SIMULATION"}
           </button>
           <button
+            className="option-button"
             onClick={() => {
               setRunning(false);
               setGrid(emptyGrid);
@@ -166,6 +168,7 @@ function App() {
             {`RESET`}
           </button>
           <button
+            className="option-button"
             onClick={() => {
               populateRandom();
             }}

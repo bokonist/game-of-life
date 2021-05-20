@@ -87,7 +87,7 @@
 
   padding: 2rem;
 }
-.options button {
+.option-button {
   cursor: pointer;
   padding: 2rem 3rem;
   width: 25rem;
@@ -100,7 +100,7 @@
   border-radius: 0.5rem;
   margin: 0.5rem 0rem;
 }
-.options button:hover {
+.option-button:hover {
   background-color: #af001d;
   color: black;
   transition: 500ms;
