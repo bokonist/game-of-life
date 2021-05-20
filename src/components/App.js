@@ -106,9 +106,11 @@ function App() {
   };
   const reset = () => {
     setGrid(emptyGrid);
+    setRunning(false);
   };
   const loadOrganism = (organismBody) => {
-    setRunning(false);
+    runningRef.current = true;
+    setRunning(true);
     let gridCopy = deepClone(emptyGrid);
     //below logic is to load the organism body in the middle of the grid
     let freeHorizontalSpace = ROWS - organismBody[0].length;
@@ -125,7 +127,6 @@ function App() {
       gridRowPointer++;
     }
     setGrid(gridCopy);
-    setRunning(true);
     runSimulation();
   };
   return (
