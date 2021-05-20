@@ -18,6 +18,7 @@ function App() {
     }
     return rows;
   })();
+  let simulationReference = useRef(null);
   const [running, setRunning] = useState(false);
   const [grid, setGrid] = useState(emptyGrid);
   const [speed, setSpeed] = useState(500);
@@ -87,8 +88,8 @@ function App() {
       }
       return gridClone;
     });
-
-    setTimeout(runSimulation, speedRef.current);
+    if (simulationReference.current) clearTimeout(simulationReference.current);
+    simulationReference.current = setTimeout(runSimulation, speedRef.current);
   }, []);
 
   const populateRandom = () => {
@@ -104,12 +105,10 @@ function App() {
     setGrid(rows);
   };
   const reset = () => {
-    setRunning(false);
     setGrid(emptyGrid);
   };
   const loadOrganism = (organismBody) => {
-    //reset();
-
+    setRunning(false);
     let gridCopy = deepClone(emptyGrid);
     //below logic is to load the organism body in the middle of the grid
     let freeHorizontalSpace = ROWS - organismBody[0].length;
@@ -127,6 +126,7 @@ function App() {
     }
     setGrid(gridCopy);
     setRunning(true);
+    runSimulation();
   };
   return (
     <div className="App">
