@@ -1,0 +1,41 @@
+.preview-container {
+  display: grid;
+  grid-template-rows: 5fr 1fr;
+}
+.preview-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.carousel-button {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 1000;
+  background-color: rgb(26, 26, 26);
+  border: 5px solid black;
+  color: white;
+  margin: 0rem 0.2rem;
+  cursor: pointer;
+}
+.carousel-button:hover {
+  background-color: #af001d;
+  color: black;
+  transition: 500ms;
+}
+
+.preview-grid {
+  min-height: 20rem;
+  min-width: 20rem;
+  max-height: 20rem;
+  max-width: 20rem;
+  background-color: transparent;
+  border: 3px solid rgb(122, 122, 122);
+  display: grid;
+}
+
+.preview-grid-cell {
+  border: 2px solid #000000;
+}
