@@ -4,8 +4,8 @@ import "../styles/App.css";
 function App() {
   const ROWS = 50,
     COLS = 50;
-  const [running, setRunning] = useState(false);
-  const [grid, setGrid] = useState(() => {
+
+  let emptyGrid = (() => {
     let rows = [];
     let col = [];
     for (let i = 0; i < ROWS; i++) {
@@ -16,7 +16,9 @@ function App() {
       col = [];
     }
     return rows;
-  });
+  })();
+  const [running, setRunning] = useState(false);
+  const [grid, setGrid] = useState(emptyGrid);
   const deepClone = (grid) => {
     let newGrid = [];
     grid.forEach((row, i) => {
@@ -79,42 +81,100 @@ function App() {
       return gridClone;
     });
 
-    setTimeout(runSimulation, 200);
+    setTimeout(runSimulation, 500);
   }, []);
+
+  const populateRandom = () => {
+    let rows = [];
+    let col = [];
+    for (let i = 0; i < ROWS; i++) {
+      for (let j = 0; j < COLS; j++) {
+        Math.random() > 0.5 ? col.push(0) : col.push(1);
+      }
+      rows.push(col);
+      col = [];
+    }
+    setGrid(rows);
+  };
   return (
     <div className="App">
-      <button
-        onClick={() => {
-          setRunning(!running);
-          if (!running) {
-            runningRef.current = true;
-            runSimulation();
-          }
-        }}
-      >
-        {running ? "Stop simulation" : "Start simulation"}
-      </button>
-      <div className="grid">
-        {grid.map((rows, i) =>
-          rows.map((cell, j) => {
-            return (
-              <div
-                key={`${i}-${j}`}
-                style={{
-                  backgroundColor: grid[i][j] === 1 ? "#1b5e1896" : "white",
-                }}
-                className="grid-cell"
-                onClick={toggleCell.bind(null, i, j)}
-              >
-                {" "}
-              </div>
-            );
-          })
-        )}
+      <div className="main-title-container">GAME OF LIFE</div>
+      <div className="main-body-container">
+        <div className="instructions">
+          <h1>RULES:</h1>
+          <ul>
+            <li>
+              Any live cell with fewer than two live neighbours dies, as if by
+              underpopulation.
+            </li>
+            <li>
+              Any live cell with two or three live neighbours lives on to the
+              next generation.
+            </li>
+            <li>
+              Any live cell with more than three live neighbours dies, as if by
+              overpopulation.
+            </li>
+            <li>
+              Any dead cell with exactly three live neighbours becomes a live
+              cell, as if by reproduction.
+            </li>
+          </ul>
+        </div>
+        <div className="grid">
+          {grid.map((rows, i) =>
+            rows.map((cell, j) => {
+              return (
+                <div
+                  key={`${i}-${j}`}
+                  style={{
+                    backgroundColor:
+                      grid[i][j] === 1 ? "#009c60" : "transparent",
+                    border:
+                      grid[i][j] === 1
+                        ? "1px solid black"
+                        : "1px solid #666666",
+                  }}
+                  className="grid-cell"
+                  onClick={toggleCell.bind(null, i, j)}
+                >
+                  {" "}
+                </div>
+              );
+            })
+          )}
+        </div>
+        <div className="options">
+          <button
+            onClick={() => {
+              setRunning(!running);
+              if (!running) {
+                runningRef.current = true;
+                runSimulation();
+              }
+            }}
+          >
+            {running ? "STOP SIMULATION" : "START SIMULATION"}
+          </button>
+          <button
+            onClick={() => {
+              setRunning(false);
+              setGrid(emptyGrid);
+            }}
+          >
+            {`RESET`}
+          </button>
+          <button
+            onClick={() => {
+              populateRandom();
+            }}
+          >
+            {`RANDOM POPULATION`}
+          </button>
+        </div>
       </div>
     </div>
   );
 }
-// <div> key={`${i}-${j}`} className="grid-cell"> </div>
 
 export default App;
