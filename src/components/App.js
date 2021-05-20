@@ -20,6 +20,14 @@ function App() {
   })();
   const [running, setRunning] = useState(false);
   const [grid, setGrid] = useState(emptyGrid);
+  const [speed, setSpeed] = useState(500);
+
+  const runningRef = useRef(running);
+  runningRef.current = running;
+
+  const speedRef = useRef(speed);
+  speedRef.current = speed;
+
   const deepClone = (grid) => {
     let newGrid = [];
     grid.forEach((row, i) => {
@@ -41,8 +49,6 @@ function App() {
     });
   };
 
-  const runningRef = useRef(running);
-  runningRef.current = running;
   const operations = [
     [0, 1],
     [1, 0],
@@ -82,7 +88,7 @@ function App() {
       return gridClone;
     });
 
-    setTimeout(runSimulation, 500);
+    setTimeout(runSimulation, speedRef.current);
   }, []);
 
   const populateRandom = () => {
@@ -96,6 +102,28 @@ function App() {
       col = [];
     }
     setGrid(rows);
+  };
+  const reset = () => {
+    setRunning(false);
+    setGrid(emptyGrid);
+  };
+  const loadOrganism = (organismBody) => {
+    //reset();
+    let gridCopy = deepClone(grid);
+    //console.log(gridCopy);
+    let freeHorizontalSpace = ROWS - organismBody[0].length;
+    let freeVerticalSpace = COLS - organismBody.length;
+    let gridColumnPointer = Math.floor(freeHorizontalSpace / 2),
+      gridRowPointer = Math.floor(freeVerticalSpace / 2);
+    for (let i = 0; i < organismBody.length; i++) {
+      for (let j = 0; j < organismBody[0].length; j++) {
+        gridCopy[gridRowPointer][gridColumnPointer] = organismBody[i][j];
+        gridColumnPointer++;
+      }
+      gridColumnPointer = Math.floor(freeHorizontalSpace / 2);
+      gridRowPointer++;
+    }
+    setGrid(gridCopy);
   };
   return (
     <div className="App">
@@ -161,8 +189,7 @@ function App() {
           <button
             className="option-button"
             onClick={() => {
-              setRunning(false);
-              setGrid(emptyGrid);
+              reset();
             }}
           >
             {`RESET`}
@@ -175,7 +202,21 @@ function App() {
           >
             {`RANDOM POPULATION`}
           </button>
-          <Preview></Preview>
+          <div>
+            <input
+              type="range"
+              id="speed"
+              name="speed"
+              min="50"
+              max="1000"
+              step="50"
+              onInput={(e) => {
+                setSpeed(Number(e.currentTarget.value));
+              }}
+            />
+            <label for="speed">Simulation Interval: {speedRef.current}ms</label>
+          </div>
+          <Preview loadOrganism={loadOrganism}></Preview>
         </div>
       </div>
     </div>
