@@ -80,19 +80,10 @@ function App() {
             let newJ = j + y;
             if (infiniteRef.current) {
               //organisms wrap around the grid and come out the other side
-              if (newI < 0) {
-                newI = ROWS - 1;
-              }
-
-              if (newI >= ROWS) {
-                newI = 0;
-              }
-              if (newJ < 0) {
-                newI = COLS - 1;
-              }
-              if (newJ >= COLS) {
-                newJ = 0;
-              }
+              newI < 0 ? (newI = ROWS - 1) : (newI = newI);
+              newJ < 0 ? (newJ = COLS - 1) : (newJ = newJ);
+              newI >= ROWS ? (newI = 0) : (newI = newI);
+              newJ >= COLS ? (newJ = 0) : (newJ = newJ);
               aliveNeighbors += prevGrid[newI][newJ];
             } else {
               if (newI >= 0 && newI < ROWS && newJ >= 0 && newJ < COLS) {
