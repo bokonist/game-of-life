@@ -1,6 +1,10 @@
 import { useCallback, useState, useRef } from "react";
+
 import "../styles/App.css";
+
 import Preview from "./Preview";
+
+import { ThemeContext } from "../contexts/ThemeContext";
 
 import logo from "../assets/logo.svg";
 
@@ -25,6 +29,7 @@ function App() {
   const [grid, setGrid] = useState(emptyGrid);
   const [speed, setSpeed] = useState(500);
   const [infiniteGrid, setInfiniteGrid] = useState(true);
+  const [theme, setTheme] = useState(true); //true for dark mode, false for light mode
 
   const runningRef = useRef(running);
   runningRef.current = running;
@@ -53,6 +58,10 @@ function App() {
       gridClone[i][j] = gridClone[i][j] ? 0 : 1;
       return gridClone;
     });
+  };
+
+  const toggleTheme = () => {
+    setTheme(!theme);
   };
 
   const operations = [
@@ -142,134 +151,140 @@ function App() {
     runSimulation();
   };
   return (
-    <div className="App">
-      <div className="main-title-container">GAME OF LIFE</div>
-      <div className="main-body-container">
-        <div className="instructions">
-          <img className="logo" alt="tree logo" src={logo}></img>
-          <h1>INTRO</h1>
-          <p>
-            The Game of Life, is a Turing complete, cellular automaton devised
-            by the British mathematician John Horton Conway in 1970.{" "}
-            <a
-              href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
-              target="_"
-            >
-              Wikipedia
-            </a>
-          </p>
-          <h1>RULES:</h1>
-          <ul>
-            <li>
-              Any live cell with fewer than two live neighbours dies, as if by
-              underpopulation.
-            </li>
-            <li>
-              Any live cell with two or three live neighbours lives on to the
-              next generation.
-            </li>
-            <li>
-              Any live cell with more than three live neighbours dies, as if by
-              overpopulation.
-            </li>
-            <li>
-              Any dead cell with exactly three live neighbours becomes a live
-              cell, as if by reproduction.
-            </li>
-          </ul>
+    <ThemeContext.Provider value={theme}>
+      <div className="App">
+        <div className="main-title-container">
+          <button onClick={toggleTheme}> toggle theme</button>GAME OF LIFE
         </div>
-        <div className="grid">
-          {grid.map((rows, i) =>
-            rows.map((cell, j) => {
-              return (
-                <div
-                  key={`${i}-${j}`}
-                  style={{
-                    backgroundColor:
-                      grid[i][j] === 1 ? "#009c60" : "transparent",
-                    border:
-                      grid[i][j] === 1
-                        ? "1px solid black"
-                        : "1px solid #666666",
-                  }}
-                  className="grid-cell"
-                  onClick={toggleCell.bind(null, i, j)}
-                >
-                  {" "}
-                </div>
-              );
-            })
-          )}
-        </div>
-        <div className="options">
-          <button
-            className="option-button"
-            onClick={() => {
-              setRunning(!running);
-              if (!running) {
-                runningRef.current = true;
-                runSimulation();
-              }
-            }}
-          >
-            {running ? "PAUSE SIMULATION" : "START SIMULATION"}
-          </button>
-          <div className="options-tray">
-            <button
-              className="option-tray-button reset-button"
-              onClick={() => {
-                reset();
-              }}
-            >
-              {`RESET`}
-            </button>
-            <button
-              className="option-tray-button random-button"
-              onClick={() => {
-                populateRandom();
-              }}
-            >
-              {`RANDOM POPULATION`}
-            </button>
-            <button
-              className="option-tray-button infinite-button"
-              onClick={() => {
-                setInfiniteGrid(!infiniteGrid);
-                infiniteRef.current = !infiniteGrid;
-              }}
-            >
-              {`INFINITE GRID: ${infiniteGrid ? "ON" : "OFF"}`}
-            </button>
+        <div className="main-body-container">
+          <div className="instructions">
+            <img className="logo" alt="tree logo" src={logo}></img>
+            <h1>INTRO</h1>
+            <p>
+              The Game of Life, is a Turing complete, cellular automaton devised
+              by the British mathematician John Horton Conway in 1970.{" "}
+              <a
+                href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+                target="_"
+              >
+                Wikipedia
+              </a>
+            </p>
+            <h1>RULES:</h1>
+            <ul>
+              <li>
+                Any live cell with fewer than two live neighbours dies, as if by
+                underpopulation.
+              </li>
+              <li>
+                Any live cell with two or three live neighbours lives on to the
+                next generation.
+              </li>
+              <li>
+                Any live cell with more than three live neighbours dies, as if
+                by overpopulation.
+              </li>
+              <li>
+                Any dead cell with exactly three live neighbours becomes a live
+                cell, as if by reproduction.
+              </li>
+            </ul>
           </div>
+          <div className="grid">
+            {grid.map((rows, i) =>
+              rows.map((cell, j) => {
+                return (
+                  <div
+                    key={`${i}-${j}`}
+                    style={{
+                      backgroundColor:
+                        grid[i][j] === 1 ? "#009c60" : "transparent",
+                      border:
+                        grid[i][j] === 1
+                          ? "1px solid black"
+                          : "1px solid #666666",
+                    }}
+                    className="grid-cell"
+                    onClick={toggleCell.bind(null, i, j)}
+                  >
+                    {" "}
+                  </div>
+                );
+              })
+            )}
+          </div>
+          <div className="options">
+            <button
+              className="option-button"
+              onClick={() => {
+                setRunning(!running);
+                if (!running) {
+                  runningRef.current = true;
+                  runSimulation();
+                }
+              }}
+            >
+              {running ? "PAUSE SIMULATION" : "START SIMULATION"}
+            </button>
+            <div className="options-tray">
+              <button
+                className="option-tray-button reset-button"
+                onClick={() => {
+                  reset();
+                }}
+              >
+                {`RESET`}
+              </button>
+              <button
+                className="option-tray-button random-button"
+                onClick={() => {
+                  populateRandom();
+                }}
+              >
+                {`RANDOM POPULATION`}
+              </button>
+              <button
+                className="option-tray-button infinite-button"
+                onClick={() => {
+                  setInfiniteGrid(!infiniteGrid);
+                  infiniteRef.current = !infiniteGrid;
+                }}
+              >
+                {`INFINITE GRID: ${infiniteGrid ? "ON" : "OFF"}`}
+              </button>
+            </div>
 
-          <div className="simulation-speed">
-            <label for="speed">Simulation Interval: {speedRef.current}ms</label>
-            <input
-              type="range"
-              id="speed"
-              name="speed"
-              min="50"
-              max="1000"
-              step="50"
-              onInput={(e) => {
-                setSpeed(Number(e.currentTarget.value));
-              }}
-            />
+            <div className="simulation-speed">
+              <label htmlFor="speed">
+                Simulation Interval: {speedRef.current}ms
+              </label>
+              <input
+                type="range"
+                id="speed"
+                name="speed"
+                min="50"
+                max="1000"
+                step="50"
+                onInput={(e) => {
+                  setSpeed(Number(e.currentTarget.value));
+                }}
+              />
+            </div>
+            <Preview loadOrganism={loadOrganism}></Preview>
           </div>
-          <Preview loadOrganism={loadOrganism}></Preview>
+        </div>
+        <div className="attributions">
+          Icons made by{" "}
+          <a href="https://www.freepik.com" title="Freepik">
+            Freepik
+          </a>{" "}
+          from{" "}
+          <a href="https://www.flaticon.com/" title="Flaticon">
+            www.flaticon.com
+          </a>
         </div>
       </div>
-      <div className="attributions">
-        Icons made by{" "}
-        <a href="https://www.freepik.com" title="Freepik">
-          Freepik
-        </a>{" "}
-        from{" "}
-        <a href="https://www.flaticon.com/" title="Flaticon">
-          www.flaticon.com
-        </a>
-      </div>
-    </div>
+    </ThemeContext.Provider>
   );
 }
 

@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../styles/Preview.css";
+
+import { ThemeContext } from "../contexts/ThemeContext";
+
 function Preview(props) {
+  let theme = useContext(ThemeContext);
   let organisms = [
     {
       name: "Block",
@@ -353,7 +357,7 @@ function Preview(props) {
     }
   };
   return (
-    <div className="preview-container">
+    <div className={"preview-container" + (theme ? "-dark" : "-light")}>
       <div className="preview-grid-container">
         <button
           className="left-button carousel-button"
