@@ -206,7 +206,8 @@ function App() {
           >
             {`RANDOM POPULATION`}
           </button>
-          <div>
+          <div className="simulation-speed">
+            <label for="speed">Simulation Interval: {speedRef.current}ms</label>
             <input
               type="range"
               id="speed"
@@ -218,7 +219,6 @@ function App() {
                 setSpeed(Number(e.currentTarget.value));
               }}
             />
-            <label for="speed">Simulation Interval: {speedRef.current}ms</label>
           </div>
           <Preview loadOrganism={loadOrganism}></Preview>
         </div>
