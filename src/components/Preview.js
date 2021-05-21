@@ -327,12 +327,6 @@ function Preview(props) {
       classification: "Oscillator",
       period: "144",
     },
-    {
-      name: "placeholder",
-      startState: [[0]],
-      classification: "sample",
-      period: "0",
-    },
   ];
   let [selection, setSelection] = useState(8);
   let [previewGrid, setPreviewGrid] = useState(organisms[selection].startState);
