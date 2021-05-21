@@ -35,6 +35,10 @@
   background-color: transparent;
   margin-bottom: 0rem;
 }
+.logo {
+  height: 12rem;
+  margin: 2rem 2rem;
+}
 .main-body-container {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
@@ -56,11 +60,28 @@
   font-weight: bolder;
   margin-bottom: 2rem;
 }
-
+.instructions p {
+  color: rgb(206, 206, 206);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.instructions a {
+  text-decoration: none;
+  color: rgb(110, 146, 187);
+}
+.instructions a:hover {
+  text-decoration: underline;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  transition: 500ms;
+  padding: 0.5rem;
+}
 .instructions li {
+  text-align: center;
   color: rgb(231, 231, 231);
   font-family: monospace;
-  font-size: 1rem;
+  font-size: 0.81rem;
   margin-bottom: 1rem;
 }
 .grid {
@@ -106,6 +127,42 @@
   background-color: #af001d;
   color: black;
   transition: 500ms;
+}
+.options-tray {
+  display: flex;
+  justify-content: space-evenly;
+}
+.option-tray-button {
+  cursor: pointer;
+  padding: 1rem 1rem;
+  width: fit-content;
+  font-size: 1.2rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  background-color: rgb(26, 26, 26);
+  color: white;
+  border: 2px dashed white;
+  border-radius: 0.5rem;
+  margin: 2rem 0.5rem;
+}
+.reset-button:hover {
+  background-color: #af001d;
+  color: black;
+  transition: 500ms;
+}
+.random-button:hover {
+  background-color: #adcc00;
+  color: rgb(0, 0, 0);
+  transition: 500ms;
+}
+.infinite-button:hover {
+  background-color: #0018f5;
+  color: black;
+  transition: 500ms;
+}
+
+.simulation-speed {
+  margin: 1rem 0rem;
 }
 .simulation-speed label {
   font-family: "Monstserrat", monospace;
@@ -156,4 +213,8 @@
   border: 2px solid white;
   border-radius: 50%;
   margin-top: -8px;
+}
+
+.attributions {
+  display: none;
 }

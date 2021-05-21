@@ -2,6 +2,8 @@ import { useCallback, useState, useRef } from "react";
 import "../styles/App.css";
 import Preview from "./Preview";
 
+import logo from "../assets/logo.svg";
+
 function App() {
   const ROWS = 50,
     COLS = 50;
@@ -22,12 +24,16 @@ function App() {
   const [running, setRunning] = useState(false);
   const [grid, setGrid] = useState(emptyGrid);
   const [speed, setSpeed] = useState(500);
+  const [infiniteGrid, setInfiniteGrid] = useState(true);
 
   const runningRef = useRef(running);
   runningRef.current = running;
 
   const speedRef = useRef(speed);
   speedRef.current = speed;
+
+  const infiniteRef = useRef(infiniteGrid);
+  infiniteRef.current = infiniteGrid;
 
   const deepClone = (grid) => {
     let newGrid = [];
@@ -73,11 +79,18 @@ function App() {
           operations.forEach(([x, y]) => {
             let newI = i + x;
             let newJ = j + y;
-            newI < 0 ? (newI = ROWS - 1) : (newI = newI);
-            newJ < 0 ? (newJ = COLS - 1) : (newJ = newJ);
-            newI >= ROWS ? (newI = 0) : (newI = newI);
-            newJ >= COLS ? (newJ = 0) : (newJ = newJ);
-            aliveNeighbors += prevGrid[newI][newJ];
+            if (infiniteRef.current) {
+              //organisms wrap around the grid and come out the other side
+              newI < 0 ? (newI = ROWS - 1) : (newI = newI);
+              newJ < 0 ? (newJ = COLS - 1) : (newJ = newJ);
+              newI >= ROWS ? (newI = 0) : (newI = newI);
+              newJ >= COLS ? (newJ = 0) : (newJ = newJ);
+              aliveNeighbors += prevGrid[newI][newJ];
+            } else {
+              if (newI >= 0 && newI < ROWS && newJ >= 0 && newJ < COLS) {
+                aliveNeighbors += prevGrid[newI][newJ];
+              }
+            }
           });
           if (aliveNeighbors < 2 || aliveNeighbors > 3) {
             gridClone[i][j] = 0;
@@ -134,6 +147,18 @@ function App() {
       <div className="main-title-container">GAME OF LIFE</div>
       <div className="main-body-container">
         <div className="instructions">
+          <img className="logo" alt="tree logo" src={logo}></img>
+          <h1>INTRO</h1>
+          <p>
+            The Game of Life, is a Turing complete, cellular automaton devised
+            by the British mathematician John Horton Conway in 1970.{" "}
+            <a
+              href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+              target="_"
+            >
+              Wikipedia
+            </a>
+          </p>
           <h1>RULES:</h1>
           <ul>
             <li>
@@ -190,22 +215,34 @@ function App() {
           >
             {running ? "PAUSE SIMULATION" : "START SIMULATION"}
           </button>
-          <button
-            className="option-button"
-            onClick={() => {
-              reset();
-            }}
-          >
-            {`RESET`}
-          </button>
-          <button
-            className="option-button"
-            onClick={() => {
-              populateRandom();
-            }}
-          >
-            {`RANDOM POPULATION`}
-          </button>
+          <div className="options-tray">
+            <button
+              className="option-tray-button reset-button"
+              onClick={() => {
+                reset();
+              }}
+            >
+              {`RESET`}
+            </button>
+            <button
+              className="option-tray-button random-button"
+              onClick={() => {
+                populateRandom();
+              }}
+            >
+              {`RANDOM POPULATION`}
+            </button>
+            <button
+              className="option-tray-button infinite-button"
+              onClick={() => {
+                setInfiniteGrid(!infiniteGrid);
+                infiniteRef.current = !infiniteGrid;
+              }}
+            >
+              {`INFINITE GRID: ${infiniteGrid ? "ON" : "OFF"}`}
+            </button>
+          </div>
+
           <div className="simulation-speed">
             <label for="speed">Simulation Interval: {speedRef.current}ms</label>
             <input
@@ -222,6 +259,16 @@ function App() {
           </div>
           <Preview loadOrganism={loadOrganism}></Preview>
         </div>
+      </div>
+      <div className="attributions">
+        Icons made by{" "}
+        <a href="https://www.freepik.com" title="Freepik">
+          Freepik
+        </a>{" "}
+        from{" "}
+        <a href="https://www.flaticon.com/" title="Flaticon">
+          www.flaticon.com
+        </a>
       </div>
     </div>
   );
