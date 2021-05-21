@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../styles/Preview.css";
 function Preview(props) {
   let organisms = [
@@ -336,7 +336,6 @@ function Preview(props) {
   ];
   let [selection, setSelection] = useState(8);
   let [previewGrid, setPreviewGrid] = useState(organisms[selection].startState);
-  //useEffect(() => {}, [previewGrid]);
   const changeSelection = (direction) => {
     let newSelection = 0;
     if (direction === "left") {
