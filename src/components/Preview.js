@@ -358,15 +358,17 @@ function Preview(props) {
   };
   return (
     <div className={"preview-container" + (theme ? "-dark" : "-light")}>
-      <div className="preview-grid-container">
+      <div className={"preview-grid-container" + (theme ? "-dark" : "-light")}>
         <button
-          className="left-button carousel-button"
+          className={
+            "left-button carousel-button" + (theme ? "-dark" : "-light")
+          }
           onClick={() => {
             changeSelection("left");
           }}
         >{`<`}</button>
         <div
-          className="preview-grid"
+          className={"preview-grid" + (theme ? "-dark" : "-light")}
           style={{
             gridTemplateColumns: `repeat(${previewGrid[0].length}, 1fr)`,
             gridTemplateRows: `repeat(${previewGrid.length}, 1fr)`,
@@ -383,7 +385,7 @@ function Preview(props) {
                     height: `calc(20/${previewGrid.length})rem`,
                     width: `calc(20/${previewGrid[0].length})rem`,
                   }}
-                  className="preview-grid-cell"
+                  className={"preview-grid-cell" + (theme ? "-dark" : "-light")}
                 >
                   {" "}
                 </div>
@@ -392,32 +394,54 @@ function Preview(props) {
           )}
         </div>
         <button
-          className="right-button  carousel-button"
+          className={`${"right-button" + (theme ? "-dark" : "-light")}  ${
+            "carousel-button" + (theme ? "-dark" : "-light")
+          }`}
           onClick={() => {
             changeSelection("right");
           }}
         >{`>`}</button>
       </div>
       <button
-        className="load-organism-button"
+        className={"load-organism-button" + (theme ? "-dark" : "-light")}
         onClick={props.loadOrganism.bind(null, organisms[selection].startState)}
       >
         Load
       </button>
-      <div className="preview-info">
-        <p className="organism-name info-entry">
-          <span className="info-title">Name: </span>
-          <span className="info-content">{organisms[selection].name}</span>
+      <div className={"preview-info" + (theme ? "-dark" : "-light")}>
+        <p
+          className={"organism-name info-entry" + (theme ? "-dark" : "-light")}
+        >
+          <span className={"info-title" + (theme ? "-dark" : "-light")}>
+            Name:{" "}
+          </span>
+          <span className={"info-content" + (theme ? "-dark" : "-light")}>
+            {organisms[selection].name}
+          </span>
         </p>
-        <p className="organism-classification info-entry">
-          <span className="info-title">Classification:</span>
-          <span className="info-content">
+        <p
+          className={
+            "organism-classification info-entry" + (theme ? "-dark" : "-light")
+          }
+        >
+          <span className={"info-title" + (theme ? "-dark" : "-light")}>
+            Classification:
+          </span>
+          <span className={"info-content" + (theme ? "-dark" : "-light")}>
             {organisms[selection].classification}
           </span>
         </p>
-        <p className="organism-period info-entry">
-          <span className="info-title">Period: </span>
-          <span className="info-content">{organisms[selection].period}</span>
+        <p
+          className={
+            "organism-period info-entry" + (theme ? "-dark" : "-light")
+          }
+        >
+          <span className={"info-title" + (theme ? "-dark" : "-light")}>
+            Period:{" "}
+          </span>
+          <span className={"info-content" + (theme ? "-dark" : "-light")}>
+            {organisms[selection].period}
+          </span>
         </p>
       </div>
     </div>

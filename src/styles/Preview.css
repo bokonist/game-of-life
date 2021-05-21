@@ -1,26 +1,18 @@
-.preview-container {
-  display: grid;
-  grid-template-rows: 5fr 1fr 1fr;
-  justify-items: center;
-}
+/*
+***** dark THEMES******
+*/
 .preview-container-dark {
   display: grid;
   grid-template-rows: 5fr 1fr 1fr;
   justify-items: center;
 }
-.preview-container-light {
-  display: grid;
-  grid-template-rows: 5fr 1fr 1fr;
-  justify-items: center;
-  background-color: white;
-}
-.preview-grid-container {
+.preview-grid-container-dark {
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   justify-items: center;
   align-items: center;
 }
-.carousel-button {
+.carousel-button-dark {
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
@@ -32,13 +24,13 @@
   margin: 0rem 0.2rem;
   cursor: pointer;
 }
-.carousel-button:hover {
+.carousel-button-dark:hover {
   background-color: #af001d;
   color: black;
   transition: 500ms;
 }
 
-.preview-grid {
+.preview-grid-dark {
   min-height: 20rem;
   min-width: 20rem;
   max-height: 20rem;
@@ -48,11 +40,11 @@
   display: grid;
 }
 
-.preview-grid-cell {
+.preview-grid-cell-dark {
   border: 2px solid #000000;
 }
 
-.load-organism-button {
+.load-organism-button-dark {
   cursor: pointer;
   padding: 0.5rem 1rem;
   max-width: 7rem;
@@ -67,21 +59,102 @@
   margin: 0.5rem 0rem;
 }
 
-.load-organism-button:hover {
+.load-organism-button-dark:hover {
   background-color: #9daf00;
   color: black;
   transition: 500ms;
 }
-.info-entry {
+.info-entry-dark {
   margin-bottom: 0.2rem;
 }
-.info-title {
+.info-title-dark {
   font-size: 1.3rem;
   font-weight: bold;
   color: rgb(211, 211, 211);
 }
-.info-content {
+.info-content-dark {
   font-size: 1rem;
 
   color: rgb(255, 255, 255);
+}
+
+/*
+***** light THEMES******
+*/
+.preview-container-light {
+  display: grid;
+  grid-template-rows: 5fr 1fr 1fr;
+  justify-items: center;
+  background-color: white;
+}
+.preview-grid-container-light {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.carousel-button-light {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 1000;
+  background-color: rgb(231, 231, 231);
+  border: 5px solid rgb(0, 0, 0);
+  color: black;
+  margin: 0rem 0.2rem;
+  cursor: pointer;
+}
+.carousel-button-light:hover {
+  background-color: #af001d;
+  color: black;
+  transition: 500ms;
+}
+
+.preview-grid-light {
+  min-height: 20rem;
+  min-width: 20rem;
+  max-height: 20rem;
+  max-width: 20rem;
+  background-color: transparent;
+  border: 3px solid rgb(122, 122, 122);
+  display: grid;
+}
+
+.preview-grid-cell-light {
+  border: 2px solid #000000;
+}
+
+.load-organism-button-light {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  max-width: 7rem;
+  max-height: 4rem;
+  font-size: 1rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 4px dashed rgb(0, 0, 0);
+  border-radius: 0.5rem;
+  margin: 0.5rem 0rem;
+}
+
+.load-organism-button-light:hover {
+  background-color: #9daf00;
+  color: black;
+  transition: 500ms;
+}
+.info-entry-light {
+  margin-bottom: 0.2rem;
+}
+.info-title-light {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: rgb(56, 56, 56);
+}
+.info-content-light {
+  font-size: 1rem;
+
+  color: rgb(0, 0, 0);
 }
