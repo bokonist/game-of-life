@@ -152,13 +152,23 @@ function App() {
   };
   return (
     <ThemeContext.Provider value={theme}>
-      <div className="App">
-        <div className="main-title-container">
-          <button onClick={toggleTheme}> toggle theme</button>GAME OF LIFE
+      <div className={"App" + (theme ? "-dark" : "-light")}>
+        <button
+          className={"toggle-theme-button" + (theme ? "-dark" : "-light")}
+          onClick={toggleTheme}
+        >
+          {theme ? "Light Mode" : "Dark Mode"}
+        </button>
+        <div className={"main-title-container" + (theme ? "-dark" : "-light")}>
+          GAME OF LIFE
         </div>
-        <div className="main-body-container">
-          <div className="instructions">
-            <img className="logo" alt="tree logo" src={logo}></img>
+        <div className={"main-body-container" + (theme ? "-dark" : "-light")}>
+          <div className={"instructions" + (theme ? "-dark" : "-light")}>
+            <img
+              className={"logo" + (theme ? "-dark" : "-light")}
+              alt="tree logo"
+              src={logo}
+            ></img>
             <h1>INTRO</h1>
             <p>
               The Game of Life, is a Turing complete, cellular automaton devised
@@ -190,7 +200,7 @@ function App() {
               </li>
             </ul>
           </div>
-          <div className="grid">
+          <div className={"grid" + (theme ? "-dark" : "-light")}>
             {grid.map((rows, i) =>
               rows.map((cell, j) => {
                 return (
@@ -204,7 +214,7 @@ function App() {
                           ? "1px solid black"
                           : "1px solid #666666",
                     }}
-                    className="grid-cell"
+                    className={"grid-cell" + (theme ? "-dark" : "-light")}
                     onClick={toggleCell.bind(null, i, j)}
                   >
                     {" "}
@@ -213,9 +223,9 @@ function App() {
               })
             )}
           </div>
-          <div className="options">
+          <div className={"options" + (theme ? "-dark" : "-light")}>
             <button
-              className="option-button"
+              className={"option-button" + (theme ? "-dark" : "-light")}
               onClick={() => {
                 setRunning(!running);
                 if (!running) {
@@ -226,9 +236,11 @@ function App() {
             >
               {running ? "PAUSE SIMULATION" : "START SIMULATION"}
             </button>
-            <div className="options-tray">
+            <div className={"options-tray" + (theme ? "-dark" : "-light")}>
               <button
-                className="option-tray-button reset-button"
+                className={`${
+                  "option-tray-button" + (theme ? "-dark" : "-light")
+                }  ${"reset-button" + (theme ? "-dark" : "-light")}`}
                 onClick={() => {
                   reset();
                 }}
@@ -236,7 +248,9 @@ function App() {
                 {`RESET`}
               </button>
               <button
-                className="option-tray-button random-button"
+                className={`${
+                  "option-tray-button" + (theme ? "-dark" : "-light")
+                }  ${"random-button" + (theme ? "-dark" : "-light")}`}
                 onClick={() => {
                   populateRandom();
                 }}
@@ -244,7 +258,9 @@ function App() {
                 {`RANDOM POPULATION`}
               </button>
               <button
-                className="option-tray-button infinite-button"
+                className={`${
+                  "option-tray-button" + (theme ? "-dark" : "-light")
+                }  ${"infinite-button" + (theme ? "-dark" : "-light")}`}
                 onClick={() => {
                   setInfiniteGrid(!infiniteGrid);
                   infiniteRef.current = !infiniteGrid;
@@ -254,7 +270,7 @@ function App() {
               </button>
             </div>
 
-            <div className="simulation-speed">
+            <div className={"simulation-speed" + (theme ? "-dark" : "-light")}>
               <label htmlFor="speed">
                 Simulation Interval: {speedRef.current}ms
               </label>

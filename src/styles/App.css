@@ -4,7 +4,12 @@
 * {
   box-sizing: border-box;
 }
-.App {
+
+/*
+**********DARK THEME***********
+*/
+
+.App-dark {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,7 +27,46 @@
     #000000
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-.main-title-container {
+
+.toggle-theme-button-dark {
+  position: absolute;
+  left: 50px;
+  top: 30px;
+  padding: 0.5rem 1rem;
+  width: 10rem;
+  font-family: "Montserrat", monospace;
+  background-color: transparent;
+  cursor: pointer;
+
+  color: white;
+  border: 2px dashed rgb(141, 141, 141);
+}
+.toggle-theme-button-dark:hover {
+  background-color: #dfdfdf;
+  color: rgb(0, 0, 0);
+  border: 2px dashed rgb(49, 49, 49);
+  transition: 500ms;
+}
+.toggle-theme-button-light {
+  position: absolute;
+  left: 50px;
+  top: 30px;
+  padding: 0.5rem 1rem;
+  width: 10rem;
+  font-family: "Montserrat", monospace;
+  background-color: transparent;
+  cursor: pointer;
+
+  color: rgb(0, 0, 0);
+  border: 2px dashed rgb(49, 49, 49);
+}
+.toggle-theme-button-light:hover {
+  background-color: black;
+  color: rgb(196, 196, 196);
+  border: 2px dashed rgb(219, 219, 219);
+  transition: 500ms;
+}
+.main-title-container-dark {
   height: 7rem;
   width: 100%;
   display: flex;
@@ -35,15 +79,15 @@
   background-color: transparent;
   margin-bottom: 0rem;
 }
-.logo {
+.logo-dark {
   height: 12rem;
   margin: 2rem 2rem;
 }
-.main-body-container {
+.main-body-container-dark {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
 }
-.instructions {
+.instructions-dark {
   color: white;
   font-family: monospace;
   display: flex;
@@ -53,54 +97,54 @@
 
   padding: 2rem;
 }
-.instructions h1 {
+.instructions-dark h1 {
   color: #b9b9b9;
   font-family: "Signika";
   font-size: 4rem;
   font-weight: bolder;
   margin-bottom: 2rem;
 }
-.instructions p {
+.instructions-dark p {
   color: rgb(206, 206, 206);
   font-size: 1rem;
   margin-bottom: 1rem;
   text-align: center;
 }
-.instructions a {
+.instructions-dark a {
   text-decoration: none;
   color: rgb(110, 146, 187);
 }
-.instructions a:hover {
+.instructions-dark a:hover {
   text-decoration: underline;
   color: rgb(0, 0, 0);
   background-color: white;
   transition: 500ms;
   padding: 0.5rem;
 }
-.instructions li {
+.instructions-dark li {
   text-align: center;
   color: rgb(231, 231, 231);
   font-family: monospace;
   font-size: 0.81rem;
   margin-bottom: 1rem;
 }
-.grid {
+.grid-dark {
   display: grid;
   grid-template-columns: repeat(50, 1rem);
   justify-content: center;
   align-items: center;
   border: 3px solid rgb(139, 139, 139);
-  max-height: 51rem;
-  max-width: 51rem;
+  max-height: 50.25rem;
+  max-width: 50.25rem;
 }
-.grid-cell {
+.grid-cell-dark {
   height: 1rem;
   width: 1rem;
   border: 1px solid #666666;
   cursor: pointer;
 }
 
-.options {
+.options-dark {
   color: white;
   font-family: monospace;
   display: flex;
@@ -110,7 +154,7 @@
 
   padding: 2rem;
 }
-.option-button {
+.option-button-dark {
   cursor: pointer;
   padding: 1rem 3rem;
   width: 25rem;
@@ -123,16 +167,16 @@
   border-radius: 0.5rem;
   margin: 0.5rem 0rem;
 }
-.option-button:hover {
+.option-button-dark:hover {
   background-color: #af001d;
   color: black;
   transition: 500ms;
 }
-.options-tray {
+.options-tray-dark {
   display: flex;
   justify-content: space-evenly;
 }
-.option-tray-button {
+.option-tray-button-dark {
   cursor: pointer;
   padding: 1rem 1rem;
   width: fit-content;
@@ -145,45 +189,45 @@
   border-radius: 0.5rem;
   margin: 2rem 0.5rem;
 }
-.reset-button:hover {
+.reset-button-dark:hover {
   background-color: #af001d;
   color: black;
   transition: 500ms;
 }
-.random-button:hover {
+.random-button-dark:hover {
   background-color: #adcc00;
   color: rgb(0, 0, 0);
   transition: 500ms;
 }
-.infinite-button:hover {
+.infinite-button-dark:hover {
   background-color: #0018f5;
   color: black;
   transition: 500ms;
 }
 
-.simulation-speed {
+.simulation-speed-dark {
   margin: 1rem 0rem;
 }
-.simulation-speed label {
+.simulation-speed-dark label {
   font-family: "Monstserrat", monospace;
   font-size: 1rem;
   margin: 1rem;
   color: aquamarine;
 }
-.simulation-speed input {
+.simulation-speed-dark input {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
 }
-.simulation-speed input::-webkit-slider-runnable-track {
+.simulation-speed-dark input::-webkit-slider-runnable-track {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   background-color: rgb(151, 151, 151);
   height: 0.3rem;
 }
-.simulation-speed input::-webkit-slider-thumb {
+.simulation-speed-dark input::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -195,7 +239,7 @@
   margin-top: -8px;
 }
 
-.simulation-speed input::-moz-range-track {
+.simulation-speed-dark input::-moz-range-track {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -203,7 +247,7 @@
   height: 0.3rem;
 }
 
-.simulation-speed input::-moz-range-thumb {
+.simulation-speed-dark input::-moz-range-thumb {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -217,4 +261,222 @@
 
 .attributions {
   display: none;
+}
+
+/*
+**********LIGHT THEME***********
+*/
+
+.App-light {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #b4b4b4,
+    #ffffff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #b4b4b4,
+    #ffffff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.main-title-container-light {
+  height: 7rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #464646;
+  font-family: "Signika", "Montserrat", monospace;
+  font-size: 5rem;
+  font-weight: bolder;
+  background-color: transparent;
+  margin-bottom: 0rem;
+}
+.logo-light {
+  height: 12rem;
+  margin: 2rem 2rem;
+  border-radius: 50%;
+  padding: 1rem;
+  box-shadow: 5px -5px 50px rgb(0, 0, 0);
+}
+.main-body-container-light {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+}
+.instructions-light {
+  color: #464646;
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+}
+.instructions-light h1 {
+  color: #464646;
+  font-family: "Signika";
+  font-size: 4rem;
+  font-weight: bolder;
+  margin-bottom: 2rem;
+}
+.instructions-light p {
+  color: rgb(61, 61, 61);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.instructions-light a {
+  text-decoration: none;
+  color: rgb(0, 119, 255);
+}
+.instructions-light a:hover {
+  text-decoration: underline;
+  color: rgb(250, 250, 250);
+  background-color: rgb(0, 0, 0);
+  transition: 500ms;
+  padding: 0.5rem;
+}
+.instructions-light li {
+  text-align: center;
+  color: rgb(71, 71, 71);
+  font-family: monospace;
+  font-size: 0.81rem;
+  margin-bottom: 1rem;
+}
+.grid-light {
+  display: grid;
+  grid-template-columns: repeat(50, 1rem);
+  justify-content: center;
+  align-items: center;
+  border: 3px solid rgb(139, 139, 139);
+  max-height: 50.25rem;
+  max-width: 50.25rem;
+}
+.grid-cell-light {
+  height: 1rem;
+  width: 1rem;
+  border: 1px solid #666666;
+  cursor: pointer;
+}
+
+.options-light {
+  color: rgb(24, 24, 24);
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+}
+.option-button-light {
+  cursor: pointer;
+  padding: 1rem 3rem;
+  width: 25rem;
+  font-size: 1.5rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  background-color: rgb(214, 214, 214);
+  color: rgb(0, 0, 0);
+  border: 4px dashed rgb(0, 0, 0);
+  border-radius: 0.5rem;
+  margin: 0.5rem 0rem;
+}
+.option-button-light:hover {
+  background-color: #af001d;
+  color: black;
+  transition: 500ms;
+}
+.options-tray-light {
+  display: flex;
+  justify-content: space-evenly;
+}
+.option-tray-button-light {
+  cursor: pointer;
+  padding: 1rem 1rem;
+  width: fit-content;
+  font-size: 1.2rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  background-color: rgb(214, 214, 214);
+  color: rgb(0, 0, 0);
+  border: 4px dashed rgb(0, 0, 0);
+  border-radius: 0.5rem;
+  margin: 2rem 0.5rem;
+}
+.reset-button-light:hover {
+  background-color: #af001d;
+  color: black;
+  transition: 500ms;
+}
+.random-button-light:hover {
+  background-color: #adcc00;
+  color: rgb(0, 0, 0);
+  transition: 500ms;
+}
+.infinite-button-light:hover {
+  background-color: #1b91ff;
+  color: black;
+  transition: 500ms;
+}
+
+.simulation-speed-light {
+  margin: 1rem 0rem;
+}
+.simulation-speed-light label {
+  font-family: "Monstserrat", monospace;
+  font-size: 1rem;
+  margin: 1rem;
+  color: rgb(0, 46, 31);
+}
+.simulation-speed-light input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+.simulation-speed-light input::-webkit-slider-runnable-track {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: rgb(151, 151, 151);
+  height: 0.3rem;
+}
+.simulation-speed-light input::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: rgb(54, 54, 54);
+  height: 18px;
+  width: 18px;
+  border: 2px solid white;
+  border-radius: 50%;
+  margin-top: -8px;
+}
+
+.simulation-speed-light input::-moz-range-track {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: rgb(151, 151, 151);
+  height: 0.3rem;
+}
+
+.simulation-speed-light input::-moz-range-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: rgb(54, 54, 54);
+  height: 18px;
+  width: 18px;
+  border: 2px solid white;
+  border-radius: 50%;
+  margin-top: -8px;
 }
