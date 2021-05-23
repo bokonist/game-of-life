@@ -1,18 +1,18 @@
 /*
 ***** dark THEMES******
 */
-.preview-container-dark {
+.App-dark .preview-container {
   display: grid;
   grid-template-rows: 5fr 1fr 1fr;
   justify-items: center;
 }
-.preview-grid-container-dark {
+.App-dark .preview-grid-container {
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   justify-items: center;
   align-items: center;
 }
-.carousel-button-dark {
+.App-dark .carousel-button {
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
@@ -24,13 +24,13 @@
   margin: 0rem 0.2rem;
   cursor: pointer;
 }
-.carousel-button-dark:hover {
+.App-dark .carousel-button :hover {
   background-color: #af001d;
   color: black;
   transition: 500ms;
 }
 
-.preview-grid-dark {
+.App-dark .preview-grid {
   min-height: 20rem;
   min-width: 20rem;
   max-height: 20rem;
@@ -40,11 +40,11 @@
   display: grid;
 }
 
-.preview-grid-cell-dark {
+.App-dark .preview-grid-cell {
   border: 1px solid #000000;
 }
 
-.load-organism-button-dark {
+.App-dark .load-organism-button {
   cursor: pointer;
   padding: 0.5rem 1rem;
   max-width: 7rem;
@@ -59,20 +59,20 @@
   margin: 0.5rem 0rem;
 }
 
-.load-organism-button-dark:hover {
+.App-dark .load-organism-button :hover {
   background-color: #9daf00;
   color: black;
   transition: 500ms;
 }
-.info-entry-dark {
+.App-dark .info-entry {
   margin-bottom: 0.2rem;
 }
-.info-title-dark {
+.App-dark .info-title {
   font-size: 1.3rem;
   font-weight: bold;
   color: rgb(211, 211, 211);
 }
-.info-content-dark {
+.App-dark .info-content {
   font-size: 1rem;
 
   color: rgb(255, 255, 255);
@@ -81,18 +81,18 @@
 /*
 ***** light THEMES******
 */
-.preview-container-light {
+.App-light .preview-container {
   display: grid;
   grid-template-rows: 5fr 1fr 1fr;
   justify-items: center;
 }
-.preview-grid-container-light {
+.App-light .preview-grid-container {
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   justify-items: center;
   align-items: center;
 }
-.carousel-button-light {
+.App-light .carousel-button {
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
@@ -104,13 +104,13 @@
   margin: 0rem 0.2rem;
   cursor: pointer;
 }
-.carousel-button-light:hover {
+.App-light .carousel-button :hover {
   background-color: #af001d;
   color: black;
   transition: 500ms;
 }
 
-.preview-grid-light {
+.App-light .preview-grid {
   min-height: 20rem;
   min-width: 20rem;
   max-height: 20rem;
@@ -120,11 +120,11 @@
   display: grid;
 }
 
-.preview-grid-cell-light {
+.App-light .preview-grid-cell {
   border: 1px solid #000000;
 }
 
-.load-organism-button-light {
+.App-light .load-organism-button {
   cursor: pointer;
   padding: 0.5rem 1rem;
   max-width: 7rem;
@@ -139,20 +139,20 @@
   margin: 0.5rem 0rem;
 }
 
-.load-organism-button-light:hover {
+.App-light .load-organism-button :hover {
   background-color: #9daf00;
   color: black;
   transition: 500ms;
 }
-.info-entry-light {
+.App-light .info-entry {
   margin-bottom: 0.2rem;
 }
-.info-title-light {
+.App-light .info-title {
   font-size: 1.3rem;
   font-weight: bold;
   color: rgb(56, 56, 56);
 }
-.info-content-light {
+.App-light .info-content {
   font-size: 1rem;
 
   color: rgb(0, 0, 0);

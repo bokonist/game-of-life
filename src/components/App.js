@@ -162,16 +162,10 @@ function App() {
         >
           {theme ? "Light Mode" : "Dark Mode"}
         </button>
-        <div className={"main-title-container" + (theme ? "-dark" : "-light")}>
-          GAME OF LIFE
-        </div>
-        <div className={"main-body-container" + (theme ? "-dark" : "-light")}>
-          <div className={"instructions" + (theme ? "-dark" : "-light")}>
-            <img
-              className={"logo" + (theme ? "-dark" : "-light")}
-              alt="tree logo"
-              src={logo}
-            ></img>
+        <div className={"main-title-container"}>GAME OF LIFE</div>
+        <div className={"main-body-container"}>
+          <div className={"instructions"}>
+            <img className={"logo"} alt="tree logo" src={logo}></img>
             <h1>INTRO</h1>
             <p>
               The Game of Life, is a Turing complete, cellular automaton devised
@@ -203,7 +197,7 @@ function App() {
               </li>
             </ul>
           </div>
-          <div className={"grid" + (theme ? "-dark" : "-light")}>
+          <div className={"grid"}>
             {grid.map((rows, i) =>
               rows.map((cell, j) => {
                 return (
@@ -217,7 +211,7 @@ function App() {
                           ? "1px solid black"
                           : "1px solid #666666",
                     }}
-                    className={"grid-cell" + (theme ? "-dark" : "-light")}
+                    className={"grid-cell"}
                     onClick={toggleCell.bind(null, i, j)}
                   >
                     {" "}
@@ -226,9 +220,9 @@ function App() {
               })
             )}
           </div>
-          <div className={"options" + (theme ? "-dark" : "-light")}>
+          <div className={"options"}>
             <button
-              className={"option-button" + (theme ? "-dark" : "-light")}
+              className={"option-button"}
               onClick={() => {
                 setRunning(!running);
                 if (!running) {
@@ -239,11 +233,9 @@ function App() {
             >
               {running ? "PAUSE SIMULATION" : "START SIMULATION"}
             </button>
-            <div className={"options-tray" + (theme ? "-dark" : "-light")}>
+            <div className={"options-tray"}>
               <button
-                className={`${
-                  "option-tray-button" + (theme ? "-dark" : "-light")
-                }  ${"reset-button" + (theme ? "-dark" : "-light")}`}
+                className={`${"option-tray-button"}  ${"reset-button"}`}
                 onClick={() => {
                   reset();
                 }}
@@ -251,9 +243,7 @@ function App() {
                 {`RESET`}
               </button>
               <button
-                className={`${
-                  "option-tray-button" + (theme ? "-dark" : "-light")
-                }  ${"random-button" + (theme ? "-dark" : "-light")}`}
+                className={`${"option-tray-button"}  ${"random-button"}`}
                 onClick={() => {
                   populateRandom();
                 }}
@@ -261,9 +251,7 @@ function App() {
                 {`RANDOM POPULATION`}
               </button>
               <button
-                className={`${
-                  "option-tray-button" + (theme ? "-dark" : "-light")
-                }  ${"infinite-button" + (theme ? "-dark" : "-light")}`}
+                className={`${"option-tray-button"}  ${"infinite-button"}`}
                 onClick={() => {
                   setInfiniteGrid(!infiniteGrid);
                   infiniteRef.current = !infiniteGrid;
@@ -273,7 +261,7 @@ function App() {
               </button>
             </div>
 
-            <div className={"simulation-speed" + (theme ? "-dark" : "-light")}>
+            <div className={"simulation-speed"}>
               <label htmlFor="speed">
                 Simulation Interval: {speedRef.current}ms
               </label>
