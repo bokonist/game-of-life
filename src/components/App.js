@@ -64,17 +64,17 @@ function App() {
     setTheme(!theme);
   };
 
-  const operations = [
-    [0, 1],
-    [1, 0],
-    [0, -1],
-    [-1, 0],
-    [1, -1],
-    [-1, 1],
-    [1, 1],
-    [-1, -1],
-  ];
   const runSimulation = useCallback(() => {
+    const operations = [
+      [0, 1],
+      [1, 0],
+      [0, -1],
+      [-1, 0],
+      [1, -1],
+      [-1, 1],
+      [1, 1],
+      [-1, -1],
+    ];
     if (!runningRef.current) {
       return;
     }
@@ -89,10 +89,10 @@ function App() {
             let newJ = j + y;
             if (infiniteRef.current) {
               //organisms wrap around the grid and come out the other side
-              newI < 0 ? (newI = ROWS - 1) : (newI = newI);
-              newJ < 0 ? (newJ = COLS - 1) : (newJ = newJ);
-              newI >= ROWS ? (newI = 0) : (newI = newI);
-              newJ >= COLS ? (newJ = 0) : (newJ = newJ);
+              if (newI < 0) newI = ROWS - 1;
+              if (newJ < 0) newJ = COLS - 1;
+              if (newI >= ROWS) newI = 0;
+              if (newJ >= COLS) newJ = 0;
               aliveNeighbors += prevGrid[newI][newJ];
             } else {
               if (newI >= 0 && newI < ROWS && newJ >= 0 && newJ < COLS) {
@@ -113,7 +113,7 @@ function App() {
     simulationReference.current = setTimeout(runSimulation, speedRef.current);
   }, []);
 
-  const populateRandom = () => {
+  const populateRandom = useCallback(() => {
     let rows = [];
     let col = [];
     for (let i = 0; i < ROWS; i++) {
@@ -124,32 +124,35 @@ function App() {
       col = [];
     }
     setGrid(rows);
-  };
-  const reset = () => {
+  }, []);
+  const reset = useCallback(() => {
     setGrid(emptyGrid);
     setRunning(false);
-  };
-  const loadOrganism = (organismBody) => {
-    runningRef.current = true;
-    setRunning(true);
-    let gridCopy = deepClone(emptyGrid);
-    //below logic is to load the organism body in the middle of the grid
-    let freeHorizontalSpace = ROWS - organismBody[0].length;
-    let freeVerticalSpace = COLS - organismBody.length;
-    let gridColumnPointer = Math.floor(freeHorizontalSpace / 2),
-      gridRowPointer = Math.floor(freeVerticalSpace / 2);
+  }, [emptyGrid]);
+  const loadOrganism = useCallback(
+    (organismBody) => {
+      runningRef.current = true;
+      setRunning(true);
+      let gridCopy = deepClone(emptyGrid);
+      //below logic is to load the organism body in the middle of the grid
+      let freeHorizontalSpace = ROWS - organismBody[0].length;
+      let freeVerticalSpace = COLS - organismBody.length;
+      let gridColumnPointer = Math.floor(freeHorizontalSpace / 2),
+        gridRowPointer = Math.floor(freeVerticalSpace / 2);
 
-    for (let i = 0; i < organismBody.length; i++) {
-      for (let j = 0; j < organismBody[0].length; j++) {
-        gridCopy[gridRowPointer][gridColumnPointer] = organismBody[i][j];
-        gridColumnPointer++;
+      for (let i = 0; i < organismBody.length; i++) {
+        for (let j = 0; j < organismBody[0].length; j++) {
+          gridCopy[gridRowPointer][gridColumnPointer] = organismBody[i][j];
+          gridColumnPointer++;
+        }
+        gridColumnPointer = Math.floor(freeHorizontalSpace / 2);
+        gridRowPointer++;
       }
-      gridColumnPointer = Math.floor(freeHorizontalSpace / 2);
-      gridRowPointer++;
-    }
-    setGrid(gridCopy);
-    runSimulation();
-  };
+      setGrid(gridCopy);
+      runSimulation();
+    },
+    [emptyGrid, runSimulation]
+  );
   return (
     <ThemeContext.Provider value={theme}>
       <div className={"App" + (theme ? "-dark" : "-light")}>
