@@ -1,7 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "../styles/Preview.css";
 
-function Preview(props: {loadOrganism: Function}) {
+interface Props {
+  loadOrganism: (organismBody:number[][])=> void;
+}
+
+const Preview: React.FC<Props>= (props)=>{
   let organisms = [
     {
       name: "Block",
@@ -398,7 +402,7 @@ function Preview(props: {loadOrganism: Function}) {
       </div>
       <button
         className={"load-organism-button"}
-        onClick={props.loadOrganism.bind(null, organisms[selection].startState)}
+        onClick={()=>{props.loadOrganism(organisms[selection].startState)}}
       >
         Load
       </button>
