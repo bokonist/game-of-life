@@ -24,7 +24,7 @@ function App():JSX.Element {
     }
     return rows;
   })();
-  let simulationReference:React.MutableRefObject<NodeJS.Timeout | null> = useRef(null);
+  let simulationReference:React.MutableRefObject<NodeJS.Timeout | ReturnType<typeof setTimeout> | null> = useRef(null);
   const [running, setRunning] = useState(false);
   const [grid, setGrid] = useState(emptyGrid);
   const [speed, setSpeed] = useState(500);
