@@ -9,12 +9,12 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import logo from "../assets/logo.svg";
 
 function App() {
-  const ROWS = 50,
-    COLS = 50;
+  const ROWS:number = 50,
+    COLS:number = 50;
 
   let emptyGrid = (() => {
-    let rows = [];
-    let col = [];
+    let rows: number[][] = [];
+    let col:number[] = [];
     for (let i = 0; i < ROWS; i++) {
       for (let j = 0; j < COLS; j++) {
         col.push(0);
@@ -24,7 +24,7 @@ function App() {
     }
     return rows;
   })();
-  let simulationReference = useRef(null);
+  let simulationReference:any = useRef(null);
   const [running, setRunning] = useState(false);
   const [grid, setGrid] = useState(emptyGrid);
   const [speed, setSpeed] = useState(500);
@@ -40,10 +40,10 @@ function App() {
   const infiniteRef = useRef(infiniteGrid);
   infiniteRef.current = infiniteGrid;
 
-  const deepClone = (grid) => {
-    let newGrid = [];
-    grid.forEach((row, i) => {
-      let col = [];
+  const deepClone = (grid: number[][]) => {
+    let newGrid:number[][] = [];
+    grid.forEach((row:number[], i:number) => {
+      let col: number[]= [];
       row.forEach((cell, j) => {
         col.push(grid[i][j]);
       });
@@ -52,7 +52,7 @@ function App() {
     });
     return newGrid;
   };
-  const toggleCell = (i, j) => {
+  const toggleCell = (i:number, j:number) => {
     setGrid((prevGrid) => {
       let gridClone = deepClone(prevGrid);
       gridClone[i][j] = gridClone[i][j] ? 0 : 1;

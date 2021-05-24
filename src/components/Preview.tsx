@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/Preview.css";
 
-function Preview(props) {
+function Preview(props:any) {
   let organisms = [
     {
       name: "Block",
@@ -331,9 +331,10 @@ function Preview(props) {
   ];
   let [selection, setSelection] = useState(8);
   let [previewGrid, setPreviewGrid] = useState(organisms[selection].startState);
-  const changeSelection = (direction) => {
+  enum Direction {LEFT, RIGHT};
+  const changeSelection = (direction:number) => {
     let newSelection = 0;
-    if (direction === "left") {
+    if (direction === Direction.LEFT) {
       setSelection((prevSelection) => {
         newSelection = prevSelection - 1;
         if (newSelection < 0) {
@@ -342,7 +343,7 @@ function Preview(props) {
         setPreviewGrid(organisms[newSelection].startState);
         return newSelection;
       });
-    } else if (direction === "right") {
+    } else if (direction === Direction.RIGHT) {
       setSelection((prevSelection) => {
         newSelection = prevSelection + 1;
         if (newSelection >= organisms.length) {
@@ -359,7 +360,7 @@ function Preview(props) {
         <button
           className={"left-button carousel-button"}
           onClick={() => {
-            changeSelection("left");
+            changeSelection(Direction.LEFT);
           }}
         >{`<`}</button>
         <div
@@ -391,7 +392,7 @@ function Preview(props) {
         <button
           className={`right-button carousel-button`}
           onClick={() => {
-            changeSelection("right");
+            changeSelection(Direction.RIGHT);
           }}
         >{`>`}</button>
       </div>
