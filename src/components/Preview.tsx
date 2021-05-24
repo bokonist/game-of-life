@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/Preview.css";
 
-function Preview(props:any) {
+function Preview(props: {loadOrganism: Function}) {
   let organisms = [
     {
       name: "Block",
