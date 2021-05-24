@@ -8,7 +8,7 @@ import { ThemeContext } from "../contexts/ThemeContext";
 
 import logo from "../assets/logo.svg";
 
-function App() {
+function App():JSX.Element {
   const ROWS:number = 50,
     COLS:number = 50;
 
@@ -24,20 +24,20 @@ function App() {
     }
     return rows;
   })();
-  let simulationReference:any = useRef(null);
+  let simulationReference:React.MutableRefObject<NodeJS.Timeout | null> = useRef(null);
   const [running, setRunning] = useState(false);
   const [grid, setGrid] = useState(emptyGrid);
   const [speed, setSpeed] = useState(500);
   const [infiniteGrid, setInfiniteGrid] = useState(true);
   const [theme, setTheme] = useState(true); //true for dark mode, false for light mode
 
-  const runningRef = useRef(running);
+  const runningRef:React.MutableRefObject<boolean> = useRef(running);
   runningRef.current = running;
 
-  const speedRef = useRef(speed);
+  const speedRef:React.MutableRefObject<number> = useRef(speed);
   speedRef.current = speed;
 
-  const infiniteRef = useRef(infiniteGrid);
+  const infiniteRef:React.MutableRefObject<boolean> = useRef(infiniteGrid);
   infiniteRef.current = infiniteGrid;
 
   const deepClone = (grid: number[][]) => {
@@ -64,7 +64,7 @@ function App() {
     setTheme(!theme);
   };
 
-  const runSimulation = useCallback(() => {
+  const runSimulation = useCallback(():void => {
     const operations = [
       [0, 1],
       [1, 0],
@@ -113,7 +113,7 @@ function App() {
     simulationReference.current = setTimeout(runSimulation, speedRef.current);
   }, []);
 
-  const populateRandom = useCallback(() => {
+  const populateRandom = useCallback(():void => {
     let rows = [];
     let col = [];
     for (let i = 0; i < ROWS; i++) {
@@ -125,12 +125,12 @@ function App() {
     }
     setGrid(rows);
   }, []);
-  const reset = useCallback(() => {
+  const reset = useCallback(():void => {
     setGrid(emptyGrid);
     setRunning(false);
   }, [emptyGrid]);
   const loadOrganism = useCallback(
-    (organismBody) => {
+    (organismBody: number[][]):void => {
       runningRef.current = true;
       setRunning(true);
       let gridCopy = deepClone(emptyGrid);
